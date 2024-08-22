@@ -9,24 +9,39 @@ const [handelinput, sethandelinput] = useState({title:"", content:""});
 
     function input(event){
 const {name, value} = event.target;
+//console.log(name); console.log(value);
 sethandelinput(prevalue => {
-if (name === "topic"){
-    return{
-        title: value,
-        content: prevalue.content
-}
-} else if (name === "content"){
-    return{
-        title: prevalue.title,
-        content: value
-    }
+//    console.log(prevalue.title);
+//    console.log(prevalue.content);
+//    //console.log(prevalue);
+// if (name === "topic"){
+//     console.log(prevalue);
+//     return{
+//         title: value,
+//         content: prevalue.content
+// }
+// } else if (name === "content"){
+//     //console.log(prevalue.title);
+//     return{
+//         title: prevalue.title,
+//         content: value
+//     }
+// }
+return{
+    ...prevalue,
+    [name]: value 
 }
 
 })
     };
 
     function submit(event) {
-         sethandelnote(handelinput);
+         sethandelnote((prevalue)=>{
+            return[
+                ...prevalue, handelinput
+            ]
+         }
+        );
 
        event.preventDefault();
        sethandelinput("");
@@ -37,17 +52,17 @@ if (name === "topic"){
 return(
 <div >
     <form className="note">
-    <input onChange={input} name="topic"  type="text" placeholder="enter the title" />
+    <input onChange={input} name="title"  type="text" placeholder="enter the title" />
     <input onChange={input} name="content" type="text" placeholder="enter the content"/>
     <button onClick={submit} >+</button>
 </form>
 <div>
-    {/* { handelnote.map((result) => {
+      { handelnote.map((result) => {
         return ( 
         <Note 
         title = {result.title} 
         content = {result.content} /> )
-       })} */}
+       })}  
 </div>
 
 </div>
