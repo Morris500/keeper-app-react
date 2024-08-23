@@ -41,8 +41,8 @@ if (name === "title"){
         //  }
         );
 
+        sethandelinput({title:"", content:""});
        event.preventDefault();
-       sethandelinput("");
     };
      
       
@@ -50,8 +50,9 @@ if (name === "title"){
 return(
 <div >
     <form className="note">
-    <input onChange={input} name="title"  type="text" placeholder="enter the title" />
-    <textarea onChange={input} name="content" placeholder="enter the content"/>
+    <input onChange={input}value=
+    {handelinput.title} name="title"  type="text" placeholder="enter the title" />
+    <textarea onChange={input} name="content" value={handelinput.content} placeholder="enter the content"/>
     <button onClick={submit} >+</button>
 </form>
 <div>
