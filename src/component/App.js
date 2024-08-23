@@ -1,7 +1,7 @@
-import React from "react";
+import React, {useState} from "react";
 import ReactDOM from "react-dom";
-//import {notes} from '../notes'
-//import { Note } from "./Note";
+import {notes} from '../notes'
+import { Note } from "./Note";
 import {Header} from "./Header";
 import {Footer} from "./Footer";
 import Input from "./input";
@@ -10,18 +10,27 @@ import Input from "./input";
 //   result.content   
 // })
 
-function App() {
+function App(props) {
+  const [handelnote, sethandelnote] = useState(notes);
+
+function note(result){
+sethandelnote((prevalue)=>{
+  return[
+    ...prevalue, result
+  ]
+})
+}
   return(
-    <div> 
+        <div> 
     <Header />
-    <Input />
-    {/* {notes.map((result) => {
+    <Input addnote={note}/>
+     {handelnote.map((result) => {
      return ( 
      <Note 
     title = {result.title} 
     content = {result.content} /> )
     })}
-     */}
+     
     <Footer />
     </div>
   )
